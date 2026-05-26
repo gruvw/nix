@@ -58,9 +58,13 @@ in
   };
 
   # ESP-32 USB
-  services.udev.extraRules = ''ATTRS{idVendor}=="303a", ATTRS{idProduct}=="1001", MODE="0666", GROUP="dialout"'';
+  services.udev.extraRules = ''
+  ATTRS{idVendor}=="303a", ATTRS{idProduct}=="1001", MODE="0666", GROUP="dialout"
+  ATTRS{idVendor}=="2e8a", ATTRS{idProduct}=="0003", MODE="0666", GROUP="users"
+  ATTRS{idVendor}=="2e8a", ATTRS{idProduct}=="000f", MODE="0666", GROUP="users"
+  '';
   # arduino
-  services.udev.packages = [ pkgs.arduino-ide ];
+  services.udev.packages = [ pkgs.arduino-ide pkgs.probe-rs-tools ];
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
@@ -150,6 +154,18 @@ in
     typescript-language-server
     evince
     fritzing
+    pkgs.nodejs
+    (pkgs.writeShellScriptBin "replicad-cli" ''
+      ${pkgs.nodejs}/bin/npx replicad-cli "$@"
+    '')
+    f3d
+    onlyoffice-desktopeditors
+    github-linguist
+    exiftool
+    kdePackages.kdenlive
+    reco
+    jpegoptim
+    imagemagick
   ];
 
   virtualisation.libvirtd.enable = true;
