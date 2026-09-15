@@ -1,5 +1,7 @@
 { config, pkgs, ... }:
 
+# sudo nixos-rebuild switch -I nixos-config=configuration.nix
+
 let
   androidEnv = pkgs.androidenv.override { licenseAccepted = true; };
 
@@ -78,6 +80,8 @@ in
     kitty
     alacritty
     brave
+    firefox
+    geckodriver
     orca-slicer
     albert
     vifm
@@ -141,6 +145,7 @@ in
       matplotlib
       ipykernel
       notebook
+      nbclassic
       jupyterlab
     ]))
     signal-desktop
@@ -194,6 +199,7 @@ in
       nerd-fonts.fira-code
       noto-fonts
       inter
+      open-sans
     ];
   };
 
@@ -256,9 +262,6 @@ in
     #  thunderbird
     ];
   };
-
-  # Install firefox.
-  programs.firefox.enable = true;
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
