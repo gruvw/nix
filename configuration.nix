@@ -148,6 +148,7 @@ in
       nbclassic
       jupyterlab
     ]))
+    pyright
     signal-desktop
     kooha
     mesa-demos
@@ -319,6 +320,7 @@ in
     ANDROID_SDK_ROOT = "${androidComposition.androidsdk}/libexec/android-sdk";
     JAVA_HOME = "${pkgs.jdk17.home}";
     FLUTTER_SDK_ROOT = "${pkgs.flutter}";
+    LD_LIBRARY_PATH = "${pkgs.stdenv.cc.cc.lib}/lib";
   };
 
   xdg.mime.defaultApplications = {
