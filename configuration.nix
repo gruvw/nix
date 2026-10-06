@@ -104,6 +104,7 @@ in
     gnumake
     sqlite
     tree-sitter
+    openconnect
     brightnessctl
     wev
     (pkgs.networkmanagerapplet.overrideAttrs (old: {
@@ -147,6 +148,8 @@ in
       notebook
       nbclassic
       jupyterlab
+      opencv4
+      pillow
     ]))
     pyright
     signal-desktop
