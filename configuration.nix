@@ -133,7 +133,6 @@ in
     cloc
     ripgrep
     blender
-    libreoffice-still
     thunderbird
     androidComposition.androidsdk
     flutter
@@ -150,6 +149,7 @@ in
       jupyterlab
       opencv4
       pillow
+      mutagen
     ]))
     pyright
     signal-desktop
@@ -161,6 +161,9 @@ in
     dig
     wpaperd
     typescript-language-server
+    oxfmt
+    tailwindcss-language-server
+    vscode-langservers-extracted
     evince
     fritzing
     pkgs.nodejs
@@ -175,7 +178,18 @@ in
     reco
     jpegoptim
     imagemagick
+    alsa-utils
+    stress-ng
+    vscode
+    sshfs
+    ffmpeg
+    tree
+    claude-code
+    (pkgs.callPackage ./packages/mornye.nix {})
   ];
+
+  services.mullvad-vpn.enable = true;
+  networking.firewall.checkReversePath = "loose";
 
   virtualisation.libvirtd.enable = true;
 
@@ -324,6 +338,8 @@ in
     JAVA_HOME = "${pkgs.jdk17.home}";
     FLUTTER_SDK_ROOT = "${pkgs.flutter}";
     LD_LIBRARY_PATH = "${pkgs.stdenv.cc.cc.lib}/lib";
+    EDITOR = "nvim";
+    VISUAL = "nvim";
   };
 
   xdg.mime.defaultApplications = {
